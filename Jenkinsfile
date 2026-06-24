@@ -29,13 +29,15 @@ pipeline {
 
         stage('Package') {
             steps {
-                bat 'mvn package'
+                bat 'mvn clean package'
             }
         }
     }
 
     post {
         success {
+
+            archiveArtifacts artifacts: 'target/*.jar'
             echo 'Build Successful'
         }
 
